@@ -1,0 +1,82 @@
+.login-container {
+  display: flex;
+  height: 100vh;
+  background: url("../../../assets/bg-login.jpg") center center no-repeat;
+  background-size: cover;
+}
+
+.login-left {
+  flex: 0 0 22%; /* grow: 0, shrink: 0, basis: 30% */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255);
+  opacity: 0.85;
+}
+
+.login-right {
+  flex: 1; /* Cresce e ocupa o restante (70%) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+}
+
+.login-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.login-logo span {
+  color: #3f9be0;
+}
+
+.input-group {
+  position: relative;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  border-radius: 10px;
+  width: 100%;
+  padding-right: 35px; /* espaço para o ícone não ficar por cima do texto */
+  padding-left: 10px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.input-group i {
+  position: absolute;
+  right: 10px; /* Aqui você controla o "colar" à borda */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button {
+  border-radius: 10px;
+  width: 250px;
+  padding: 10px;
+  background: #cfd6db;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .login-left {
+    flex: 1 1 100%; /* Ocupa 100% da largura */
+  }
+
+  .login-right {
+    display: none; /* Esconde no mobile */
+  }
+
+  .login-container {
+    flex-direction: column; /* Se quiser que as divs fiquem uma embaixo da outra (opcional aqui) */
+  }
+}

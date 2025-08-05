@@ -1,0 +1,20 @@
+.container-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.menu-lateral {
+  width: 20%;
+  background: rgb(220,220,221); /* Corrigi o 'write' para 'white' */
+  color: #2c3e50;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 1px solid #ccc; /* borda na lateral direita */
+}
+
+.conteudo-principal {
+  width: 80%;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
