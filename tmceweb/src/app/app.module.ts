@@ -8,6 +8,7 @@ import { Global } from './global';
 import { HomeComponent } from './componentes/home/home.component';
 import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxViacepModule } from '@brunoc/ngx-viacep';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NgxViacepModule 
     
   ],
   providers: [Global],
