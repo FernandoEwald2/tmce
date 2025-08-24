@@ -1,6 +1,34 @@
-<div class="container-layout">
-  <aside class="menu-lateral">
-    <!-- Menu e navegação aqui -->
+<!-- Cabeçalho fixo -->
+<nav class="top-nav bg-dark text-white px-3">
+  <div class="d-flex align-items-center" style="width: 100%;">
+    <!-- Div esquerda: 20% -->
+    <div style="width: 20%;" class="d-flex align-items-center gap-3">
+      <h2 class="mb-0">TMCE System</h2>
+      <i class="fa-solid fa-sliders" 
+         style="cursor:pointer; padding-left: 40px;"
+         (click)="toggleMenu()" 
+         data-bs-toggle="tooltip"
+         data-bs-placement="bottom" 
+         title="Exibir/Ocultar menu">
+      </i>
+    </div>
+
+    <!-- Div central: 70% -->
+    <div style="width: 70%;" class="text-center">
+      <!-- Conteúdo central -->
+    </div>
+
+    <!-- Div direita: 10% -->
+    <div style="width: 10%;" class="d-flex justify-content-end">
+      <i class="fa-regular fa-user" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"></i>
+    </div>
+  </div>
+</nav>
+
+<!-- Layout principal -->
+<div class="container-layout d-flex">
+  <!-- Menu lateral -->
+  <aside class="menu-lateral" *ngIf="mostrarMenu">
     <nav>
       <ul>
         <li>
@@ -15,12 +43,17 @@
             Usuário
           </a>
         </li>
-        <!-- Outros links -->
       </ul>
     </nav>
   </aside>
 
-  <section class="conteudo-principal">
+  <!-- Conteúdo principal -->
+  <section class="conteudo-principal flex-grow-1">
     <router-outlet></router-outlet>
   </section>
 </div>
+
+<!-- Rodapé fixo -->
+<footer class="footer bg-dark text-white text-center py-2">
+  <p class="mb-0">© 2025 - Todos os direitos reservados</p>
+</footer>

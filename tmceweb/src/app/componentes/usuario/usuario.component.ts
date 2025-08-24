@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../api.service';
+import { ApiService } from 'src/app/api.service';
+
 
 @Component({
   selector: 'app-usuario',

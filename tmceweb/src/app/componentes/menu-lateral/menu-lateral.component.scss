@@ -1,10 +1,63 @@
+/* ===== Cabeçalho fixo ===== */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #343a40;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+.top-nav ul {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.top-nav li {
+  list-style: none;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Rodapé fixo ===== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #343a40;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Layout principal ===== */
 .container-layout {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 100px); /* 60px header + 40px footer */
+  margin-top: 60px;   /* espaço para o cabeçalho */
+  margin-bottom: 40px; /* espaço para o rodapé */
 }
 
 .menu-lateral {
-  width: 20%; /* pode mudar para 15% se quiser mais espaço no conteúdo */
+  width: 20%;
   background: rgb(220, 220, 221);
   color: #2c3e50;
   padding: 20px;
@@ -18,6 +71,7 @@
   overflow-y: auto;
   box-sizing: border-box;
 }
+
 li {
   list-style: none;
   margin: 10px 0;
