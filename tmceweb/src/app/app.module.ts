@@ -8,23 +8,28 @@ import { Global } from './global';
 import { HomeComponent } from './componentes/home/home.component';
 import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { NgxViacepModule } from '@brunoc/ngx-viacep';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     NgxChartsModule,
-    NgxViacepModule 
-    
+    HttpClientModule
+     
   ],
   providers: [Global],
   bootstrap: [AppComponent]

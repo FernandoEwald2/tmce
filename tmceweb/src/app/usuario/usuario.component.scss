@@ -1,0 +1,28 @@
+form {
+  width: 100%; /* usa toda a largura da área de conteúdo */
+  max-width: 100%; /* remove limite de 500px */
+  margin: 0; /* remove centralização fixa */
+}
+
+form div {
+  margin-bottom: 12px;
+}
+
+form label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+form input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+form button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}

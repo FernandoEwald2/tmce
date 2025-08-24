@@ -4,17 +4,21 @@
 }
 
 .menu-lateral {
-  width: 20%;
-  background: rgb(220,220,221); /* Corrigi o 'write' para 'white' */
+  width: 20%; /* pode mudar para 15% se quiser mais espaço no conteúdo */
+  background: rgb(220, 220, 221);
   color: #2c3e50;
   padding: 20px;
   box-sizing: border-box;
-  border-right: 1px solid #ccc; /* borda na lateral direita */
+  border-right: 1px solid #ccc;
 }
 
 .conteudo-principal {
-  width: 80%;
+  width: 80%; /* ou flex: 1; */
   padding: 20px;
   overflow-y: auto;
   box-sizing: border-box;
+}
+li {
+  list-style: none;
+  margin: 10px 0;
 }

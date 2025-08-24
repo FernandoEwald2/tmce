@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private router: Router) {}
+  constructor(@Inject(Router) private router: Router) {}
 
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -28,9 +27,17 @@ export class AuthService {
         return false;
       }
 
-      const now = Math.floor(Date.now() / 1000); // em segundos
+      const tokenDate = new Date(decoded.exp * 1000);
+      const now = new Date();
+      tokenDate.setHours(0, 0, 0, 0);
+      now.setHours(0, 0, 0, 0);
 
-      return exp > now;
+      if (tokenDate.toDateString() !== now.toDateString()) {
+        this.logout();
+        return false;
+      }
+
+      return true;
     } catch (error) {
       console.error('Token inválido:', error);
       return false;
@@ -42,4 +49,3 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 }
-

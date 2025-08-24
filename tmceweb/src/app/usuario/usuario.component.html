@@ -1,0 +1,125 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h2>Usuário</h2>
+  </div>
+
+  <section>
+    <form class="row g-3" [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- CEP -->
+      <div class="col-md-4">
+        <label class="form-label">CEP:</label>
+        <input class="form-control" formControlName="cep" placeholder="00000-000" />
+        <div *ngIf="carregandoCep">Buscando endereço...</div>
+        <div *ngIf="erroCep" class="text-danger">{{ erroCep }}</div>
+        <div *ngIf="usuarioForm.get('cep')?.invalid && usuarioForm.get('cep')?.touched" class="text-danger">
+          CEP inválido.
+        </div>
+      </div>
+
+      <!-- Logradouro -->
+      <div class="col-md-4">
+        <label class="form-label">Logradouro:</label>
+        <input class="form-control" formControlName="logradouro" />
+      </div>
+
+      <!-- Número -->
+      <div class="col-md-4">
+        <label class="form-label">Número:</label>
+        <input class="form-control" formControlName="numero" />
+      </div>
+
+      <!-- Bairro -->
+      <div class="col-md-4">
+        <label class="form-label">Bairro:</label>
+        <input class="form-control" formControlName="bairro" />
+      </div>
+
+      <!-- Cidade -->
+      <div class="col-md-4">
+        <label class="form-label">Cidade:</label>
+        <input class="form-control" formControlName="cidade" />
+      </div>
+
+      <!-- Estado -->
+      <div class="col-md-4">
+        <label class="form-label">Estado:</label>
+        <input class="form-control" formControlName="estado" />
+      </div>
+
+      <hr class="mt-4 mb-2 w-100" />
+
+      <!-- Usuário -->
+      <div class="col-md-4">
+        <label class="form-label">Usuário:</label>
+        <input class="form-control" formControlName="usuario" />
+        <div *ngIf="usuarioForm.get('usuario')?.invalid && usuarioForm.get('usuario')?.touched" class="text-danger">
+          Usuário obrigatório.
+        </div>
+      </div>
+
+      <!-- Login -->
+      <div class="col-md-4">
+        <label class="form-label">Login:</label>
+        <input class="form-control" formControlName="login" />
+        <div *ngIf="usuarioForm.get('login')?.invalid && usuarioForm.get('login')?.touched" class="text-danger">
+          Login obrigatório (mín 4 caracteres).
+        </div>
+      </div>
+
+      <!-- Senha -->
+      <div class="col-md-4">
+        <label class="form-label">Senha:</label>
+        <input class="form-control" formControlName="senha" type="password" />
+        <div *ngIf="usuarioForm.get('senha')?.invalid && usuarioForm.get('senha')?.touched" class="text-danger">
+          Senha obrigatória (mín 6 caracteres).
+        </div>
+      </div>
+
+      <!-- CPF -->
+      <div class="col-md-4">
+        <label class="form-label">CPF:</label>
+        <input class="form-control" formControlName="cpf" placeholder="Só números, ex: 12345678901" />
+        <div *ngIf="usuarioForm.get('cpf')?.invalid && usuarioForm.get('cpf')?.touched" class="text-danger">
+          CPF inválido (deve conter 11 números).
+        </div>
+      </div>
+
+      <!-- Telefone -->
+      <div class="col-md-4">
+        <label class="form-label">Telefone:</label>
+        <input class="form-control" formControlName="telefone" />
+        <div *ngIf="usuarioForm.get('telefone')?.invalid && usuarioForm.get('telefone')?.touched" class="text-danger">
+          Telefone obrigatório.
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <div class="col-12 mt-3">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+
+    </form>
+    <div>
+      <h3 class="mt-4">Usuários Cadastrados</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Login</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of listaUsuarios">
+            <td>{{ usuario.usuario }}</td>
+            <td>{{ usuario.login }}</td>
+            <td>{{ usuario.cpf }}</td>
+            <td>{{ usuario.telefone }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>

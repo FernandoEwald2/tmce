@@ -4,6 +4,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.component';
 import { AuthGuard } from './auth.guard';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 const routes: Routes = [
   // Redireciona a raiz ('') para o login
@@ -19,6 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuard], //<= Protege as rotas abaixo com o AuthGuard
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'usuario', component: UsuarioComponent },
       // Outras rotas dentro do layout vão aqui
     ],
   },

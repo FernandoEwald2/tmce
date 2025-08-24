@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword = false;
   constructor(
-    private fb: FormBuilder,
+    @Inject(FormBuilder) private fb: FormBuilder,
     private global: Global,
     private router: Router,
     private authService: AuthService
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
       // armazenar o token antes de redirecionar
 
-      this.global.setTokenUsuario('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjExMCIsInRva2VuIjoiN0RGMjM1RTNCRjJGNDVDNzkyMTNDOUM3NTA5QjM4MkIiLCJydWxlIjoiQmVhcmVyIiwidHlwZSI6IjEiLCJuYmYiOjE3NTQ0MjE5NzMsImV4cCI6MTc1NDQzNjM3MywiaWF0IjoxNzU0NDIxOTczLCJpc3MiOiJJc3N1ZXIifQ.yG7UrIZgqR5r64EiBfHzK9GNIY5lhFjJ8WkKoykSnL8');
+      this.global.setTokenUsuario('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjExMCIsInRva2VuIjoiN0RGMjM1RTNCRjJGNDVDNzkyMTNDOUM3NTA5QjM4MkIiLCJydWxlIjoiQmVhcmVyIiwidHlwZSI6IjEiLCJuYmYiOjE3NTU3MTc2NzQsImV4cCI6MTc1NTczMjA3NCwiaWF0IjoxNzU1NzE3Njc0LCJpc3MiOiJJc3N1ZXIifQ._XdG9cnQgBJRD6u1Ozq3J3gzJUuTDTlEKsgwLuCC1Rs');
 
       const tokenValido = this.authService.isTokenValid();
 
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
         Swal.fire({
           icon: 'error',
-          title: 'Token inválido',
+          title: 'Lofin inválido',
           text: 'Por favor, faça login novamente.',
         });
         this.authService.logout();
