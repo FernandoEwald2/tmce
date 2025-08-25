@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -7,11 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuLateralComponent implements OnInit {
 
-  mostrarMenu:boolean = true;
+  mostrarMenu: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.mostrarMenu = window.innerWidth > 768;
+
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (event.target.innerWidth > 768) {
+      this.mostrarMenu = true; // sempre mostrar no desktop
+    } else {
+      this.mostrarMenu = false; // esconder no mobile
+    }
   }
 
   toggleMenu() {

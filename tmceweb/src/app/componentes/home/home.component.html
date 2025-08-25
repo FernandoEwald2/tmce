@@ -2,56 +2,41 @@
   <!-- Gráfico 1: Pizza - Receita vs Despesa -->
   <div class="grafico">
     <h4>Receitas vs Despesas</h4>
-    <ngx-charts-pie-chart
-    [view]="[600, 300]"
-      [results]="receitasVsDespesas"
-      [legend]="true"
-      [labels]="true"
-      [explodeSlices]="false"
-      [doughnut]="false"
-      [gradient]="true">
-    </ngx-charts-pie-chart>
+    <div>
+      <ngx-charts-pie-chart [view]="[600, 300]" [results]="receitasVsDespesas" [legend]="true" [labels]="true"
+        [explodeSlices]="false" [doughnut]="false" [gradient]="true">
+      </ngx-charts-pie-chart>
+    </div>
+
   </div>
 
   <!-- Gráfico 2: Barra - Despesas Mensais -->
   <div class="grafico">
     <h4>Despesas Mensais</h4>
-    <ngx-charts-bar-vertical
-    [view]="[600, 300]"
-      [results]="despesasMensais"
-      [xAxis]="true"
-      [yAxis]="true"
-      [legend]="false"
-      [showDataLabel]="true"
-      [gradient]="true">
-    </ngx-charts-bar-vertical>
+    <div>
+      <ngx-charts-bar-vertical [view]="[600, 300]" [results]="despesasMensais" [xAxis]="true" [yAxis]="true"
+        [legend]="false" [showDataLabel]="true" [gradient]="true">
+      </ngx-charts-bar-vertical>
+    </div>
   </div>
 
   <!-- Gráfico 3: Linha - Saldo Mensal -->
   <div class="grafico">
     <h4>Saldo Mensal</h4>
-    <ngx-charts-line-chart
-    [view]="[600, 300]"
-      [results]="[{ name: 'Saldo', series: saldoMensal }]"
-      [xAxis]="true"
-      [yAxis]="true"
-      [legend]="true"
-      [autoScale]="true"
-      [timeline]="false"
-      [gradient]="true">
-    </ngx-charts-line-chart>
+    <div>
+      <ngx-charts-line-chart [view]="[600, 300]" [results]="[{ name: 'Saldo', series: saldoMensal }]" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [autoScale]="true" [timeline]="false" [gradient]="true">
+      </ngx-charts-line-chart>
+    </div>
   </div>
 
   <!-- Gráfico 4: Pizza - Categorias de Gastos -->
   <div class="grafico">
     <h4>Distribuição de Gastos</h4>
-    <ngx-charts-pie-chart
-    [view]="[600, 300]"
-      [results]="categoriasGastos"
-      [legend]="true"
-      [labels]="true"
-      [doughnut]="true"
-      [gradient]="true">
-    </ngx-charts-pie-chart>
+    <div>
+      <ngx-charts-pie-chart [view]="[600, 300]" [results]="categoriasGastos" [legend]="true" [labels]="true"
+        [doughnut]="true" [gradient]="true">
+      </ngx-charts-pie-chart>
+    </div>
   </div>
 </div>
