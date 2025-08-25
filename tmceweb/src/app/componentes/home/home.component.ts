@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { colorSets } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  colorScheme: any = '';
 
   receitasVsDespesas = [
     { name: 'Receitas', value: 14500 },
@@ -52,6 +55,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.colorScheme = colorSets.find(s => s.name === 'ocean') || { domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] };
   }
 
 }

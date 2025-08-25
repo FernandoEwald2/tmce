@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
 import { Global } from 'src/app/global';
 
+
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -15,6 +16,9 @@ export class UsuarioComponent implements OnInit {
   buscaCep: string = '';
   listaUsuarios: any[] = []; // Lista para armazenar usuários
   mobile: boolean = false;
+
+  cpfMask = { mask: '999.999.999-99' };
+
 
   constructor(
     @Inject(FormBuilder) private fb: FormBuilder,

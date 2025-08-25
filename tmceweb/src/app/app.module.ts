@@ -11,7 +11,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
-import { provideNgxMask } from 'ngx-mask';
+import { ClienteComponent } from './componentes/cliente/cliente.component';
+import { NgxMaskDirective,provideNgxMask } from 'ngx-mask';
+
 
 
 
@@ -21,23 +23,24 @@ import { provideNgxMask } from 'ngx-mask';
     LoginComponent,
     HomeComponent,
     MenuLateralComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
+    FormsModule,    
     NgxChartsModule,
     HttpClientModule,
+    NgxMaskDirective,
+    ReactiveFormsModule
     
-     
   ],
 
   providers: [
     Global,
-    provideNgxMask()
+    provideNgxMask({ /* opções de cfg */ }) 
    
   ],
   bootstrap: [AppComponent]

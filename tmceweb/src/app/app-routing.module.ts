@@ -5,6 +5,7 @@ import { HomeComponent } from './componentes/home/home.component';
 import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.component';
 import { AuthGuard } from './auth.guard';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { ClienteComponent } from './componentes/cliente/cliente.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'usuario', component: UsuarioComponent },
+      { path: 'cliente', component: ClienteComponent },
       // Outras rotas dentro do layout vão aqui
     ],
   },

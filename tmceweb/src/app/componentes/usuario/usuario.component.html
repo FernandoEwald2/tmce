@@ -81,7 +81,7 @@
       <!-- CPF -->
       <div class="col-md-4">
         <label class="form-label">CPF:</label>
-        <input class="form-control" formControlName="cpf" placeholder="Só números, ex: 12345678901" maxlength="11" />
+        <input class="form-control" formControlName="cpf" placeholder="Só números, ex: 12345678901" maxlength="14" mask="000.000.000-00"/>
         <div *ngIf="usuarioForm.get('cpf')?.invalid && usuarioForm.get('cpf')?.touched" class="text-danger">
           CPF inválido (deve conter 11 números).
         </div>
@@ -90,7 +90,7 @@
       <!-- Telefone -->
       <div class="col-md-4">
         <label class="form-label">Telefone:</label>
-        <input class="form-control" formControlName="telefone" maxlength="11" />
+        <input class="form-control" formControlName="telefone" maxlength="16" mask="(00) 0 0000 0000" type="tel" />
         <div *ngIf="usuarioForm.get('telefone')?.invalid && usuarioForm.get('telefone')?.touched" class="text-danger">
           Telefone obrigatório.
         </div>
