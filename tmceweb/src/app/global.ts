@@ -24,5 +24,13 @@ export class Global {
   deleteUsuarioLogado(): void {
     localStorage.removeItem('usuario');
   }
+  mascararTexto(texto: string): string {
+  if (texto.length <= 3) {
+    return texto; // se tiver 3 ou menos caracteres, retorna normal
+  }
+  const primeirosTres = texto.slice(0, 3); // pega os 3 primeiros caracteres
+  const mascarado = '*'.repeat(texto.length - 3); // gera os '*' restantes
+  return primeirosTres + mascarado;
+}
   
 }

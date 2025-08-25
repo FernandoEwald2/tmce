@@ -11,6 +11,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { provideNgxMask } from 'ngx-mask';
+
 
 
 @NgModule({
@@ -28,10 +30,16 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
     FormsModule,
     ReactiveFormsModule,
     NgxChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    
      
   ],
-  providers: [Global],
+
+  providers: [
+    Global,
+    provideNgxMask()
+   
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,6 +23,7 @@
     "@swimlane/ngx-charts": "22.0.0-alpha.0",
     "crypto-js": "^4.2.0",
     "jwt-decode": "^4.0.0",
+    "ngx-mask": "19.0.7",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.22.2",
     "tslib": "^2.3.0",
@@ -41,5 +42,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.4.5"
+  },
+  "volta": {
+    "node": "20.19.0"
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
-
+import { Global } from 'src/app/global';
 
 @Component({
   selector: 'app-usuario',
@@ -12,10 +12,16 @@ export class UsuarioComponent implements OnInit {
   usuarioForm!: FormGroup;
   carregandoCep = false;
   erroCep = '';
-  buscaCep:string = '';
+  buscaCep: string = '';
   listaUsuarios: any[] = []; // Lista para armazenar usuários
+  mobile: boolean = false;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {}
+  constructor(
+    @Inject(FormBuilder) private fb: FormBuilder,
+    public global: Global,
+    private apiService: ApiService,
+    // private _global: Global
+  ) {}
 
   ngOnInit(): void {
     this.usuarioForm = this.fb.group({
@@ -24,6 +30,7 @@ export class UsuarioComponent implements OnInit {
       senha: ['', [Validators.required, Validators.minLength(6)]],
       cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]], // só números
       telefone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       cep: ['', [Validators.required, Validators.pattern(/^\d{5}-?\d{3}$/)]],
       logradouro: [''],
       numero: [''],
@@ -32,15 +39,16 @@ export class UsuarioComponent implements OnInit {
       estado: [''],
     });
 
-    this.usuarioForm.get('cep')?.valueChanges.subscribe(cepValue => {
-    this.buscaCep = cepValue?.replace(/\D/g, '') || '';
+    this.usuarioForm.get('cep')?.valueChanges.subscribe((cepValue) => {
+      this.buscaCep = cepValue?.replace(/\D/g, '') || '';
 
-    // Só dispara a busca se tiver 8 dígitos
-    if (this.buscaCep.length === 8) {
-      this.onCepBlur();
-    }
-  });
-    
+      // Só dispara a busca se tiver 8 dígitos
+      if (this.buscaCep.length === 8) {
+        this.onCepBlur();
+      }
+    });
+
+    this.mobile = window.innerWidth <= 768;   
   }
 
   onCepBlur() {
@@ -88,16 +96,24 @@ export class UsuarioComponent implements OnInit {
 
   onSubmit() {
     if (this.usuarioForm.invalid) {
-      this.usuarioForm.markAllAsTouched();    
+      this.usuarioForm.markAllAsTouched();
       return;
     }
 
-    this.listaUsuarios.push(this.usuarioForm.value); 
-    console.log(this.listaUsuarios);
+    this.listaUsuarios.push(this.usuarioForm.value);    
     this.usuarioForm.reset();
-      
 
     // Aqui você pode chamar sua API para salvar o usuário, ex:
     // this.apiService.post('usuarios', dados).subscribe(...)
+  }
+  removerUsuario(usuario: any) {
+    const index = this.listaUsuarios.indexOf(usuario);
+    if (index > -1) {
+      this.listaUsuarios.splice(index, 1);
+    }
+  }
+  editarUsuario(usuario: any) {
+    this.usuarioForm.patchValue(usuario);
+    this.removerUsuario(usuario);
   }
 }

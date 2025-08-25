@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
       // armazenar o token antes de redirecionar
 
-      this.global.setTokenUsuario('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjExMCIsInRva2VuIjoiN0RGMjM1RTNCRjJGNDVDNzkyMTNDOUM3NTA5QjM4MkIiLCJydWxlIjoiQmVhcmVyIiwidHlwZSI6IjEiLCJuYmYiOjE3NTYwNzA4MjAsImV4cCI6MTc1NjA4NTIyMCwiaWF0IjoxNzU2MDcwODIwLCJpc3MiOiJJc3N1ZXIifQ.qu_Ba-B2JnUowlxwQ_-4qEn-YPzI7vPKgf1hhO7L6M0');
+      this.global.setTokenUsuario('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjExMCIsInRva2VuIjoiN0RGMjM1RTNCRjJGNDVDNzkyMTNDOUM3NTA5QjM4MkIiLCJydWxlIjoiQmVhcmVyIiwidHlwZSI6IjEiLCJuYmYiOjE3NTYwODgzODUsImV4cCI6MTc1NjEwMjc4NSwiaWF0IjoxNzU2MDg4Mzg1LCJpc3MiOiJJc3N1ZXIifQ.Vqc69_Af6BKguNgofzfeburGdmCuxUhGRtiSZiQ3IuQ');
 
       const tokenValido = this.authService.isTokenValid();
 
