@@ -1,6 +1,6 @@
 <main id="main" class="main">
   <div class="pagetitle">
-    <h2>Usuário</h2>
+    <h2>Cadastro de Usuário</h2>
   </div>
 
   <section>
@@ -11,7 +11,7 @@
       <div class="col-md-4">
         <label class="form-label">CEP:</label>
         <input type="text" class="form-control" formControlName="cep" placeholder="00.000-000" mask="00.000-000"
-          maxlength="8" />
+          maxlength="10" />
         <div *ngIf="carregandoCep">Buscando endereço...</div>
         <div *ngIf="erroCep" class="text-danger">{{ erroCep }}</div>
         <div *ngIf="usuarioForm.get('cep')?.invalid && usuarioForm.get('cep')?.touched" class="text-danger">
@@ -26,10 +26,12 @@
       </div>
 
       <!-- Número -->
-      <div class="col-md-4">
+      <div class="col-md-2">
         <label class="form-label">Número:</label>
         <input class="form-control" formControlName="numero" />
       </div>
+
+     
 
       <!-- Bairro -->
       <div class="col-md-4">
@@ -61,7 +63,7 @@
       </div>
 
       <!-- Login -->
-      <div class="col-md-4">
+      <div class="col-md-3">
         <label class="form-label">Login:</label>
         <input class="form-control" formControlName="login" autocomplete="off" />
         <div *ngIf="usuarioForm.get('login')?.invalid && usuarioForm.get('login')?.touched" class="text-danger">
@@ -70,7 +72,7 @@
       </div>
 
       <!-- Senha -->
-      <div class="col-md-4">
+      <div class="col-md-3">
         <label class="form-label">Senha:</label>
         <input class="form-control" formControlName="senha" type="password" />
         <div *ngIf="usuarioForm.get('senha')?.invalid && usuarioForm.get('senha')?.touched" class="text-danger">
@@ -78,10 +80,25 @@
         </div>
       </div>
 
+       <!-- Perfil -->
+      <div class="col-md-2">
+        <label class="form-label">Perfil:</label>
+        <select class="form-control" formControlName="perfil">
+          <option value="" disabled selected>Selecione um perfil</option>
+          <option *ngFor="let opcao of listaPerfis" [ngValue]="opcao.id">
+            {{ opcao.value }}
+          </option>
+        </select>
+        <div *ngIf="usuarioForm.get('perfil')?.touched && usuarioForm.get('perfil')?.invalid" class="text-danger">
+          Perfil é obrigatório
+        </div>
+      </div>
+
       <!-- CPF -->
       <div class="col-md-4">
         <label class="form-label">CPF:</label>
-        <input class="form-control" formControlName="cpf" placeholder="Só números, ex: 12345678901" maxlength="14" mask="000.000.000-00"/>
+        <input class="form-control" formControlName="cpf" placeholder="Só números, ex: 12345678901" maxlength="14"
+          mask="000.000.000-00" />
         <div *ngIf="usuarioForm.get('cpf')?.invalid && usuarioForm.get('cpf')?.touched" class="text-danger">
           CPF inválido (deve conter 11 números).
         </div>
@@ -118,10 +135,11 @@
           <tr>
             <th>Usuário</th>
             <th>Login</th>
+            <th *ngIf="!mobile">Perfil</th>
             <th *ngIf="!mobile">CPF</th>
             <th *ngIf="!mobile">Telefone</th>
             <th *ngIf="!mobile">Email</th>
-            <th class="text-center" >Ação</th>
+            <th class="text-center">Ação</th>
 
           </tr>
         </thead>
@@ -129,6 +147,7 @@
           <tr *ngFor="let usuario of listaUsuarios">
             <td>{{ usuario.usuario }}</td>
             <td>{{ usuario.login }}</td>
+            <td>{{ getNomePerfil(usuario.perfil) }}</td>
             <td *ngIf="!mobile">{{ global.mascararTexto(usuario.cpf) }}</td>
             <td *ngIf="!mobile">{{ usuario.telefone }}</td>
             <td *ngIf="!mobile">{{ usuario.email }}</td>

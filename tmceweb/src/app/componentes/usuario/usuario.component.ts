@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
 import { Global } from 'src/app/global';
 
-
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -16,15 +15,12 @@ export class UsuarioComponent implements OnInit {
   buscaCep: string = '';
   listaUsuarios: any[] = []; // Lista para armazenar usuários
   mobile: boolean = false;
-
-  cpfMask = { mask: '999.999.999-99' };
-
+  listaPerfis: any[] = [];
 
   constructor(
     @Inject(FormBuilder) private fb: FormBuilder,
     public global: Global,
-    private apiService: ApiService,
-    // private _global: Global
+    private apiService: ApiService // private _global: Global
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +33,7 @@ export class UsuarioComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       cep: ['', [Validators.required, Validators.pattern(/^\d{5}-?\d{3}$/)]],
       logradouro: [''],
+      perfil: ['', [Validators.required]],
       numero: [''],
       bairro: [''],
       cidade: [''],
@@ -52,7 +49,11 @@ export class UsuarioComponent implements OnInit {
       }
     });
 
-    this.mobile = window.innerWidth <= 768;   
+    this.mobile = window.innerWidth <= 768;
+    this.listaPerfis = [
+      { id: 1, value: 'Admin' },
+      { id: 2, value: 'Cliente' },
+    ];
   }
 
   onCepBlur() {
@@ -99,12 +100,13 @@ export class UsuarioComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.usuarioForm.value);
     if (this.usuarioForm.invalid) {
       this.usuarioForm.markAllAsTouched();
       return;
     }
 
-    this.listaUsuarios.push(this.usuarioForm.value);    
+    this.listaUsuarios.push(this.usuarioForm.value);
     this.usuarioForm.reset();
 
     // Aqui você pode chamar sua API para salvar o usuário, ex:
@@ -119,5 +121,9 @@ export class UsuarioComponent implements OnInit {
   editarUsuario(usuario: any) {
     this.usuarioForm.patchValue(usuario);
     this.removerUsuario(usuario);
+  }
+  getNomePerfil(id: number): string {
+    const perfil = this.listaPerfis.find((p) => p.id === id);
+    return perfil ? perfil.value : '';
   }
 }
