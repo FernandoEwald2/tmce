@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
 import { NgxMaskDirective,provideNgxMask } from 'ngx-mask';
+import { FinanceiroComponent } from './financeiro/financeiro.component';
 
 
 
@@ -24,7 +25,8 @@ import { NgxMaskDirective,provideNgxMask } from 'ngx-mask';
     HomeComponent,
     MenuLateralComponent,
     UsuarioComponent,
-    ClienteComponent
+    ClienteComponent,
+    FinanceiroComponent
   ],
   imports: [
     BrowserModule,

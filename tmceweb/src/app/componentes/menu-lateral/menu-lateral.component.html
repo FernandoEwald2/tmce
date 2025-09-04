@@ -4,8 +4,8 @@
     <!-- Div esquerda -->
     <div class="d-flex align-items-center gap-3" style="width: 20%;">
       <h2 class="mb-0 p-3 pe-5">TMCE System</h2>
-      <i class="fa-solid fa-sliders" style="cursor:pointer;" (click)="toggleMenu()"
-         data-bs-toggle="tooltip" data-bs-placement="bottom" title="Exibir/Ocultar menu"></i>
+      <i class="fa-solid fa-sliders" style="cursor:pointer;" (click)="toggleMenu()" data-bs-toggle="tooltip"
+        data-bs-placement="bottom" title="Exibir/Ocultar menu"></i>
     </div>
 
     <!-- Div central -->
@@ -17,8 +17,8 @@
     <div class="d-flex justify-content-end" style="width: 10%;">
       <!-- Dropdown usuário -->
       <div class="dropdown pe-3">
-        <i class="fa-regular fa-user dropdown-toggle" role="button" id="userDropdown"
-           data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;"></i>
+        <i class="fa-regular fa-user dropdown-toggle" role="button" id="userDropdown" data-bs-toggle="dropdown"
+          aria-expanded="false" style="cursor:pointer;"></i>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
           <li>
             <a class="dropdown-item d-flex align-items-center" href="#">
@@ -30,8 +30,6 @@
     </div>
   </div>
 </nav>
-
-
 
 <!-- Layout principal -->
 <div class="container-layout d-flex">
@@ -47,20 +45,28 @@
         </li>
         <li class="mb-3">
           <a routerLink="/usuario" class="card p-3 d-flex flex-row align-items-center text-decoration-none text-dark">
-            <i class="fas fa-address-book"></i>
+            <i class="fa-solid fa-user"></i>
             <span class="menu-text ps-2">Usuário</span>
           </a>
         </li>
-         <li class="mb-3">
-          <a routerLink="/usuario" class="card p-3 d-flex flex-row align-items-center text-decoration-none text-dark">
+        <li class="mb-3">
+          <a routerLink="/cliente" class="card p-3 d-flex flex-row align-items-center text-decoration-none text-dark">
+            <i class="fas fa-users"></i>
+            <span class="menu-text ps-2">Cliente</span>
+          </a>
+        </li>
+        <li class="mb-3">
+          <a routerLink="/financeiro"
+            class="card p-3 d-flex flex-row align-items-center text-decoration-none text-dark">
             <i class="fas fa-hand-holding-dollar"></i>
             <span class="menu-text ps-2">Financeiro</span>
           </a>
         </li>
-         <li class="mb-3">
-          <a routerLink="/cliente" class="card p-3 d-flex flex-row align-items-center text-decoration-none text-dark">
-            <i class="fas fa-users"></i>
-            <span class="menu-text ps-2">Cliente</span>
+        <li class="mb-3">
+          <a routerLink="/financeiro"
+            class="card p-3 d-flex flex-row align-items-center text-decoration-none text-dark">
+            <i class="fas fa-address-book"></i>
+            <span class="menu-text ps-2">Agenda</span>
           </a>
         </li>
       </ul>

@@ -6,6 +6,7 @@ import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.co
 import { AuthGuard } from './auth.guard';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
+import { FinanceiroComponent } from './financeiro/financeiro.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'usuario', component: UsuarioComponent },
       { path: 'cliente', component: ClienteComponent },
+      { path: 'financeiro', component: FinanceiroComponent },
       // Outras rotas dentro do layout vão aqui
     ],
   },
