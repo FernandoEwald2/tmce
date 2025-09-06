@@ -33,4 +33,17 @@ export class Global {
     const mascarado = '*'.repeat(texto.length - 3); // gera os '*' restantes
     return primeirosTres + mascarado;
   }
+  formatarTelefone(tel: string): string {
+  if (!tel) return '';
+  
+  // Remove tudo que não é número
+  const numeros = tel.replace(/\D/g, '');
+
+  // Aplica a máscara (00) 0 0000 0000
+  if (numeros.length === 11) {
+    return `(${numeros.slice(0,2)}) ${numeros.slice(2,3)} ${numeros.slice(3,7)} ${numeros.slice(7,11)}`;
+  }
+
+  return tel; // retorna como está se não tiver 11 dígitos
+}
 }

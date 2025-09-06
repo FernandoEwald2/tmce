@@ -14,6 +14,9 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
 import { NgxMaskDirective,provideNgxMask } from 'ngx-mask';
 import { FinanceiroComponent } from './financeiro/financeiro.component';
+import { AgendaComponent } from './agenda/agenda.component';
+import { ReceitaComponent } from './receita/receita.component';
+import { DespesaComponent } from './despesa/despesa.component';
 
 
 
@@ -26,7 +29,10 @@ import { FinanceiroComponent } from './financeiro/financeiro.component';
     MenuLateralComponent,
     UsuarioComponent,
     ClienteComponent,
-    FinanceiroComponent
+    FinanceiroComponent,
+    ReceitaComponent,
+    DespesaComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,

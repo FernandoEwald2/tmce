@@ -7,6 +7,9 @@ import { AuthGuard } from './auth.guard';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
 import { FinanceiroComponent } from './financeiro/financeiro.component';
+import { AgendaComponent } from './agenda/agenda.component';
+import { ReceitaComponent } from './receita/receita.component';
+import { DespesaComponent } from './despesa/despesa.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,9 @@ const routes: Routes = [
       { path: 'usuario', component: UsuarioComponent },
       { path: 'cliente', component: ClienteComponent },
       { path: 'financeiro', component: FinanceiroComponent },
+      { path: 'receita', component: ReceitaComponent },
+      { path: 'despesa', component: DespesaComponent },
+      { path: 'agenda', component: AgendaComponent },
       // Outras rotas dentro do layout vão aqui
     ],
   },

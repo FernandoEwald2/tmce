@@ -111,7 +111,7 @@
           CPF inválido (deve conter 11 números).
         </div>
       </div>
-
+      
       <!-- Botão -->
       <div class="col-12 mt-3">
         <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Salvar</button>
@@ -123,7 +123,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Nome</th>           
+            <th>Nome</th>
             <th>Tipo</th>
             <th *ngIf="!mobile">CPF</th>
             <th *ngIf="!mobile">CNPJ</th>
@@ -134,7 +134,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let cliente of listaClientes">
-            <td>{{ cliente.nome }}</td>            
+            <td>{{ cliente.nome }}</td>
             <td>{{ getTipo(cliente.tipoCliente) }}</td>
             <td *ngIf="!mobile">{{ cliente.cpf ? global.mascararTexto(cliente.cpf) : '--' }}</td>
             <td *ngIf="!mobile">{{ cliente.cnpj ? global.mascararTexto(cliente.cnpj) : '--' }}</td>

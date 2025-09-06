@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
       // armazenar o token antes de redirecionar
 
-      this.global.setTokenUsuario('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjExMCIsInRva2VuIjoiN0RGMjM1RTNCRjJGNDVDNzkyMTNDOUM3NTA5QjM4MkIiLCJydWxlIjoiQmVhcmVyIiwidHlwZSI6IjEiLCJuYmYiOjE3NTY5MDc3MjIsImV4cCI6MTc1NjkyMjEyMiwiaWF0IjoxNzU2OTA3NzIyLCJpc3MiOiJJc3N1ZXIifQ.68EVsxHAWz92JnY422VKttrDX_HF-78KTtcc_7PsQjo');
+      this.global.setTokenUsuario('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjExMCIsInRva2VuIjoiN0RGMjM1RTNCRjJGNDVDNzkyMTNDOUM3NTA5QjM4MkIiLCJydWxlIjoiQmVhcmVyIiwidHlwZSI6IjEiLCJuYmYiOjE3NTcxMzE2ODgsImV4cCI6MTc1NzE0NjA4OCwiaWF0IjoxNzU3MTMxNjg4LCJpc3MiOiJJc3N1ZXIifQ.xlcjOO92AqBfDJY2YIF_GyyW6rghufC30NaaUsFHjTI');
 
       const tokenValido = this.authService.isTokenValid();
 
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
         Swal.fire({
           icon: 'error',
-          title: 'Lofin inválido',
+          title: 'Login inválido',
           text: 'Por favor, faça login novamente.',
         });
         this.authService.logout();
