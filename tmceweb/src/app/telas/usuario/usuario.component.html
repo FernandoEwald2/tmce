@@ -29,7 +29,7 @@
       <div class="col-md-2">
         <label class="form-label">Número:</label>
         <input class="form-control" formControlName="numero" />
-      </div>     
+      </div>
 
       <!-- Bairro -->
       <div class="col-md-4">
@@ -54,8 +54,8 @@
       <!-- Usuário -->
       <div class="col-md-4">
         <label class="form-label">Usuário:</label>
-        <input class="form-control" formControlName="usuario" />
-        <div *ngIf="usuarioForm.get('usuario')?.invalid && usuarioForm.get('usuario')?.touched" class="text-danger">
+        <input class="form-control" formControlName="nome" />
+        <div *ngIf="usuarioForm.get('nome')?.invalid && usuarioForm.get('nome')?.touched" class="text-danger">
           Usuário obrigatório.
         </div>
       </div>
@@ -72,18 +72,18 @@
       <!-- Senha -->
       <div class="col-md-3">
         <label class="form-label">Senha:</label>
-        <input class="form-control" formControlName="senha" type="password" />
+        <input *ngIf="!usuarioEditar" class="form-control" formControlName="senha" type="password" autocomplete="off" />
         <div *ngIf="usuarioForm.get('senha')?.invalid && usuarioForm.get('senha')?.touched" class="text-danger">
-          Senha obrigatória (mín 6 caracteres).
+          Senha obrigatória (mín 4 caracteres).
         </div>
       </div>
 
-       <!-- Perfil -->
+      <!-- Perfil -->
       <div class="col-md-2">
         <label class="form-label">Perfil:</label>
         <select class="form-control" formControlName="perfil">
           <option value="" disabled selected>Selecione um perfil</option>
-          <option *ngFor="let opcao of listaPerfis" [ngValue]="opcao.id">
+          <option *ngFor="let opcao of global.listaPerfis" [ngValue]="opcao.id">
             {{ opcao.value }}
           </option>
         </select>
@@ -122,16 +122,33 @@
 
       <!-- Botão -->
       <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-primary" [disabled]="usuarioForm.invalid">Salvar</button>
+        <button type="submit" class="btn btn-primary me-2" [disabled]="usuarioForm.invalid">
+          Salvar
+        </button>
+        <button type="button" class="btn btn-danger" [disabled]="usuarioForm.invalid" (click)="limparFormulario()">
+          Cancelar
+        </button>
       </div>
+
 
     </form>
     <div>
-      <h3 class="mt-4">Usuários Cadastrados</h3>
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <h3 class="m-0">Usuários Cadastrados</h3>
+
+        <div class="d-flex align-items-end">
+          <div class="d-flex align-items-center">
+            <input placeholder="Nome ou CPF" class="form-control me-2" type="text" name="ineNomeEquipe"
+              [(ngModel)]="busca" />
+            <button class="btn btn-primary" (click)=" buscarUsuarios()" aria-label="Next">Buscar</button>
+          </div>
+        </div>
+      </div>
+
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Usuário</th>
+            <th>Nome</th>
             <th>Login</th>
             <th *ngIf="!mobile">Perfil</th>
             <th *ngIf="!mobile">CPF</th>
@@ -143,23 +160,53 @@
         </thead>
         <tbody>
           <tr *ngFor="let usuario of listaUsuarios">
-            <td>{{ usuario.usuario }}</td>
+            <td>{{ usuario.nome }}</td>
             <td>{{ usuario.login }}</td>
             <td>{{ getNomePerfil(usuario.perfil) }}</td>
             <td *ngIf="!mobile">{{ global.mascararTexto(usuario.cpf) }}</td>
-            <td *ngIf="!mobile">{{ usuario.telefone }}</td>
-            <td *ngIf="!mobile">{{ usuario.email }}</td>
+            <td *ngIf="!mobile">{{ usuario.telefone ===''? ' -- ': usuario.telefone}}</td>
+            <td *ngIf="!mobile">{{ usuario.email ===''? ' -- ': usuario.email }}</td>
             <td class="d-flex gap-1 justify-content-center">
-              <button class="btn btn-danger btn-sm" (click)="removerUsuario(usuario)">
+              <button class="btn btn-danger btn-sm" (click)="removerUsuario(usuario)" data-bs-toggle="tooltip"
+                title="Remover usuário">
                 <i class="fa-regular fa-trash-can"></i>
               </button>
-              <button class="btn btn-secondary btn-sm" (click)="editarUsuario(usuario)">
+
+              <button class="btn btn-secondary btn-sm" (click)="editarUsuario(usuario)" data-bs-toggle="tooltip"
+                title="Editar usuário">
                 <i class="fa-regular fa-pen-to-square"></i>
               </button>
             </td>
+
           </tr>
         </tbody>
       </table>
+    </div>
+    <div *ngIf="listaUsuarios.length > 0 " style="margin: 10px 0;">
+      <div style="text-align:center;" class="col-12 d-flex justify-content-center align-items-center gap-2">
+        <button class="btn btn-primary" style="display:inline-block" [disabled]="pagina == 1" (click)="voltarPagina()"
+          aria-label="Previous">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+        <span style="margin:10px 10px;">Página {{pagina }} de {{totalPagina}}</span>
+        <button class="btn btn-primary" style="display:inline-block" [disabled]="pagina == totalPagina"
+          (click)="(pagina = pagina + 1) && buscarUsuarios()" aria-label="Next">
+          <i class="bi bi-arrow-right"></i>
+        </button>
+        <!-- Select para itens por página -->
+        <label for="itensPorPagina" class="ms-3 me-1 mb-0">Itens por página:</label>
+        <select id="itensPorPagina" class="form-select d-inline-block w-auto" [(ngModel)]="itensPorPagina"
+          (change)="pagina = 1; buscarUsuarios()">
+          <option *ngFor="let item of global.listaQuantidadeItensPorPagina" [value]="item.value">
+            {{ item.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <p class="text-center" *ngIf="listaUsuarios.length === 0">
+        Nenhum registro encontrado.
+      </p>
     </div>
   </section>
 </main>

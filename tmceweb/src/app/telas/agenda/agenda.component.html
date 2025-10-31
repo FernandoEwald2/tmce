@@ -32,12 +32,12 @@
                     Telefone é obrigatório
                 </div>
                 <div class="agenda-line">
-                    <label for="aniversario">Aniversário:</label>
-                    <input id="aniversario" type="date" formControlName="aniversario" />
+                    <label for="data_nascimento">Data de nascimento:</label>
+                    <input id="data_nascimento" type="date" formControlName="data_nascimento" />
                 </div>
                 <div class="erro"
-                    *ngIf="agendaForm.get('aniversario')?.touched && agendaForm.get('aniversario')?.invalid">
-                    Aniversário é obrigatório
+                    *ngIf="agendaForm.get('data_nascimento')?.touched && agendaForm.get('data_nascimento')?.invalid">
+                    Data de nascimento é obrigatória
                 </div>
                 <div class="col-12 mt-3 text-center">
                     <button type="submit" class="btn btn-primary" [disabled]="agendaForm.invalid">Salvar</button>
@@ -46,33 +46,59 @@
         </div>
 
         <!-- tabela -->
-        <div *ngIf="agendaList.length > 0" class="mt-4">
+        <div class="mt-4">
             <h3 class="mt-4">Contatos Agenda</h3>
             <table class="table table-striped">
                 <thead>
-                    <tr>                        
+                    <tr>
                         <th>Nome</th>
-                        <th>Email</th>
+                        <th *ngIf="!mobile">Email</th>
                         <th>Telefone</th>
-                        <th>Aniverssário</th>
+                        <th *ngIf="!mobile">Aniverssário</th>
                         <th class="text-center">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let contato of agendaList">
+                    <tr  *ngFor="let contato of agendaList">
                         <td>{{ contato.nome }}</td>
-                        <td>{{ contato.email }}</td>
+                        <td *ngIf="!mobile">{{ contato.email }}</td>
                         <td>{{ global.formatarTelefone(contato.telefone) }}</td>
-                        <td>{{ contato.aniversario | date: 'dd/MM/yyyy' }}</td>
+                        <td *ngIf="!mobile">{{ contato.data_nascimento | date: 'dd/MM/yyyy' }}</td>
                         <td class="d-flex gap-1 justify-content-center">
                             <button class="btn btn-danger btn-sm">
                                 <i class="fa-solid fa-user-slash"></i>
 
-                            </button>                            
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div style="margin: 10px 0;">
+            <div style="text-align:center;" class="col-12 d-flex justify-content-center align-items-center gap-2">
+                <button class="btn btn-primary" style="display:inline-block" [disabled]="pagina == 1"
+                    (click)="voltarPagina()" aria-label="Previous">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+                <span style="margin:10px 10px;">Página {{pagina }} de {{totalPagina}}</span>
+                <button class="btn btn-primary" style="display:inline-block" [disabled]="pagina == totalPagina"
+                    (click)="(pagina = pagina + 1) && buscarAgendas()" aria-label="Next">
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+                <!-- Select para itens por página -->
+                <label for="itensPorPagina" class="ms-3 me-1 mb-0">Itens por página:</label>
+                <select id="itensPorPagina" class="form-select d-inline-block w-auto" [(ngModel)]="itensPorPagina"
+                    (change)="pagina = 1; buscarAgendas()">
+                    <option *ngFor="let item of global.listaQuantidadeItensPorPagina" [value]="item.value">
+                        {{ item.label }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <p class="text-center" *ngIf="agendaList.length > 0">
+                Nenhum registro encontrado.
+            </p>
         </div>
     </section>
 </main>

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './componentes/login/login.component';
-import { HomeComponent } from './componentes/home/home.component';
+import { HomeComponent } from './telas/home/home.component';
 import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.component';
 import { AuthGuard } from './auth.guard';
-import { UsuarioComponent } from './componentes/usuario/usuario.component';
-import { ClienteComponent } from './componentes/cliente/cliente.component';
-import { FinanceiroComponent } from './financeiro/financeiro.component';
-import { AgendaComponent } from './agenda/agenda.component';
-import { ReceitaComponent } from './receita/receita.component';
-import { DespesaComponent } from './despesa/despesa.component';
+import { UsuarioComponent } from './telas/usuario/usuario.component';
+import { ClienteComponent } from './telas/cliente/cliente.component';
+import { FinanceiroComponent } from './telas/financeiro/financeiro.component';
+import { AgendaComponent } from './telas/agenda/agenda.component';
+import { ReceitaComponent } from './componentes/receita/receita.component';
+import { DespesaComponent } from './componentes/despesa/despesa.component';
 
 
 const routes: Routes = [

@@ -1,3 +1,4 @@
+import { Global } from 'src/app/global';
 import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
@@ -6,7 +7,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Inject(Router) private router: Router) {}
+  constructor(@Inject(Router) private router: Router, private global: Global) {}
 
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -27,12 +28,11 @@ export class AuthService {
         return false;
       }
 
-      const tokenDate = new Date(decoded.exp * 1000);
+      // exp está em segundos → converter para ms
+      const expirationDate = new Date(exp * 1000);
       const now = new Date();
-      tokenDate.setHours(0, 0, 0, 0);
-      now.setHours(0, 0, 0, 0);
 
-      if (tokenDate.toDateString() !== now.toDateString()) {
+      if (expirationDate <= now) {
         this.logout();
         return false;
       }
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('token');
+    this.global.logout();   
     this.router.navigate(['/login']);
   }
 }
