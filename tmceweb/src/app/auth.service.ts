@@ -38,8 +38,7 @@ export class AuthService {
       }
 
       return true;
-    } catch (error) {
-      console.error('Token inválido:', error);
+    } catch (error) {      
       return false;
     }
   }

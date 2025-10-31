@@ -160,17 +160,26 @@ export class UsuarioComponent implements OnInit {
   removerUsuario(usuario: any) {
     this.apiService.delete(`Usuario/${usuario.id}`).subscribe({
       next: (data) => {
-        console.log('Usuário removido com sucesso:', data);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso!',
+          html: 'Usuário removido com sucesso!',
+        });      
 
         this.buscarUsuarios();
       },
       error: (err) => {
-        console.error('Erro ao remover usuário:', err);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: 'Ocorreu um erro ao remover o usuário. \n' + (err.message || ''),
+        });        
       },
     });
   }
-  editarUsuario(usuario: any) {
-    console.log(usuario);
+  editarUsuario(usuario: any) {    
     this.usuarioEditar = usuario;
     this.usuarioForm.patchValue(usuario);
   }

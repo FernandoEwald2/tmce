@@ -29,7 +29,12 @@ export class FinanceiroComponent implements OnInit {
     // Checagem por extensão (alguns browsers não definem type como 'text/csv')
     const isCsv = /\.csv$/i.test(file.name);
     if (!isCsv) {
-      alert('Selecione um arquivo .csv válido!');
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Arquivo inválido',
+        text: 'Selecione um arquivo .csv válido!',
+      });     
       this.clearFile();
       return;
     }
@@ -40,7 +45,7 @@ export class FinanceiroComponent implements OnInit {
   clearFile() {
     this.selectedFile = null;
     if (this.fileInput) {
-      this.fileInput.nativeElement.value = ''; // limpa o texto do input
+      this.fileInput.nativeElement.value = '';
     }
   }
 
@@ -64,28 +69,15 @@ export class FinanceiroComponent implements OnInit {
     });
 
     this.isUploading = false;
-    this.clearFile(); // também limpa após sucesso
-
-    // this.http.post('http://localhost:5000/api/importar-csv', formData).subscribe({
-    //   next: () => {
-    //
-    //     this.isUploading = false;
-    //     this.clearFile(); // também limpa após sucesso
-    //   },
-    //   error: (err) => {
-    //     console.error(err);
-    //     alert('Erro no upload do arquivo!');
-    //     this.isUploading = false;
-    //     // opcional: this.clearFile();
-    //   }
-    // });
+    this.clearFile(); 
+   
   }
   ordenar(coluna: keyof any) {
     if (this.colunaOrdenacao === coluna) {
-      // troca a direção
+      
       this.direcaoOrdenacao = this.direcaoOrdenacao === 'asc' ? 'desc' : 'asc';
     } else {
-      // define nova coluna e reseta direção
+      
       this.colunaOrdenacao = coluna;
       this.direcaoOrdenacao = 'asc';
     }

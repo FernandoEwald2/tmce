@@ -123,8 +123,7 @@ export class ClienteComponent implements OnInit {
     });
   }
   onSubmit() {
-
-    console.log(this.clienteForm.value);
+    
     if (this.clienteForm.invalid) {
       this.clienteForm.markAllAsTouched();
       return;

@@ -49,7 +49,12 @@ export class AgendaComponent implements OnInit {
           this.agendaForm.reset();
         },
         error: (err) => {
-          console.error('Erro ao atualizar agenda:', err);
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Ocorreu um erro ao inserir a agenda.' + (err.message || ''),
+          });          
         },
       });
     } else {
